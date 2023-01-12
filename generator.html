@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <title>网址导入</title>
+    <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+        (function(global,factory){typeof exports==="object"&&typeof module!=="undefined"?module.exports=factory(global):typeof define==="function"&&define.amd?define(factory):factory(global)})(typeof self!=="undefined"?self:typeof window!=="undefined"?window:typeof global!=="undefined"?global:this,function(global){"use strict";global=global||{};var _Base64=global.Base64;var version="2.5.1";var buffer;if(typeof module!=="undefined"&&module.exports){try{buffer=eval("require('buffer').Buffer")}catch(err){buffer=undefined}}var b64chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";var b64tab=function(bin){var t={};for(var i=0,l=bin.length;i<l;i++)t[bin.charAt(i)]=i;return t}(b64chars);var fromCharCode=String.fromCharCode;var cb_utob=function(c){if(c.length<2){var cc=c.charCodeAt(0);return cc<128?c:cc<2048?fromCharCode(192|cc>>>6)+fromCharCode(128|cc&63):fromCharCode(224|cc>>>12&15)+fromCharCode(128|cc>>>6&63)+fromCharCode(128|cc&63)}else{var cc=65536+(c.charCodeAt(0)-55296)*1024+(c.charCodeAt(1)-56320);return fromCharCode(240|cc>>>18&7)+fromCharCode(128|cc>>>12&63)+fromCharCode(128|cc>>>6&63)+fromCharCode(128|cc&63)}};var re_utob=/[\uD800-\uDBFF][\uDC00-\uDFFFF]|[^\x00-\x7F]/g;var utob=function(u){return u.replace(re_utob,cb_utob)};var cb_encode=function(ccc){var padlen=[0,2,1][ccc.length%3],ord=ccc.charCodeAt(0)<<16|(ccc.length>1?ccc.charCodeAt(1):0)<<8|(ccc.length>2?ccc.charCodeAt(2):0),chars=[b64chars.charAt(ord>>>18),b64chars.charAt(ord>>>12&63),padlen>=2?"=":b64chars.charAt(ord>>>6&63),padlen>=1?"=":b64chars.charAt(ord&63)];return chars.join("")};var btoa=global.btoa?function(b){return global.btoa(b)}:function(b){return b.replace(/[\s\S]{1,3}/g,cb_encode)};var _encode=buffer?buffer.from&&Uint8Array&&buffer.from!==Uint8Array.from?function(u){return(u.constructor===buffer.constructor?u:buffer.from(u)).toString("base64")}:function(u){return(u.constructor===buffer.constructor?u:new buffer(u)).toString("base64")}:function(u){return btoa(utob(u))};var encode=function(u,urisafe){return!urisafe?_encode(String(u)):_encode(String(u)).replace(/[+\/]/g,function(m0){return m0=="+"?"-":"_"}).replace(/=/g,"")};var encodeURI=function(u){return encode(u,true)};var re_btou=new RegExp(["[À-ß][-¿]","[à-ï][-¿]{2}","[ð-÷][-¿]{3}"].join("|"),"g");var cb_btou=function(cccc){switch(cccc.length){case 4:var cp=(7&cccc.charCodeAt(0))<<18|(63&cccc.charCodeAt(1))<<12|(63&cccc.charCodeAt(2))<<6|63&cccc.charCodeAt(3),offset=cp-65536;return fromCharCode((offset>>>10)+55296)+fromCharCode((offset&1023)+56320);case 3:return fromCharCode((15&cccc.charCodeAt(0))<<12|(63&cccc.charCodeAt(1))<<6|63&cccc.charCodeAt(2));default:return fromCharCode((31&cccc.charCodeAt(0))<<6|63&cccc.charCodeAt(1))}};var btou=function(b){return b.replace(re_btou,cb_btou)};var cb_decode=function(cccc){var len=cccc.length,padlen=len%4,n=(len>0?b64tab[cccc.charAt(0)]<<18:0)|(len>1?b64tab[cccc.charAt(1)]<<12:0)|(len>2?b64tab[cccc.charAt(2)]<<6:0)|(len>3?b64tab[cccc.charAt(3)]:0),chars=[fromCharCode(n>>>16),fromCharCode(n>>>8&255),fromCharCode(n&255)];chars.length-=[0,0,2,1][padlen];return chars.join("")};var _atob=global.atob?function(a){return global.atob(a)}:function(a){return a.replace(/\S{1,4}/g,cb_decode)};var atob=function(a){return _atob(String(a).replace(/[^A-Za-z0-9\+\/]/g,""))};var _decode=buffer?buffer.from&&Uint8Array&&buffer.from!==Uint8Array.from?function(a){return(a.constructor===buffer.constructor?a:buffer.from(a,"base64")).toString()}:function(a){return(a.constructor===buffer.constructor?a:new buffer(a,"base64")).toString()}:function(a){return btou(_atob(a))};var decode=function(a){return _decode(String(a).replace(/[-_]/g,function(m0){return m0=="-"?"+":"/"}).replace(/[^A-Za-z0-9\+\/]/g,""))};var noConflict=function(){var Base64=global.Base64;global.Base64=_Base64;return Base64};global.Base64={VERSION:version,atob:atob,btoa:btoa,fromBase64:decode,toBase64:encode,utob:utob,encode:encode,encodeURI:encodeURI,btou:btou,decode:decode,noConflict:noConflict,__buffer__:buffer};if(typeof Object.defineProperty==="function"){var noEnum=function(v){return{value:v,enumerable:false,writable:true,configurable:true}};global.Base64.extendString=function(){Object.defineProperty(String.prototype,"fromBase64",noEnum(function(){return decode(this)}));Object.defineProperty(String.prototype,"toBase64",noEnum(function(urisafe){return encode(this,urisafe)}));Object.defineProperty(String.prototype,"toBase64URI",noEnum(function(){return encode(this,true)}))}}if(global["Meteor"]){Base64=global.Base64}if(typeof module!=="undefined"&&module.exports){module.exports.Base64=global.Base64}else if(typeof define==="function"&&define.amd){define([],function(){return global.Base64})}return{Base64:global.Base64}});
+    </script>
+    <style>
+        .myapp {box-shadow: 0 0 5px #e1e1e1; width:600px; margin:100px auto 0; border-radius: 5px; overflow: hidden;}
+        .myapp .hd {border-bottom: 1px solid #f1f1f1; line-height: 40px; padding: 0 0 0 20px; font-weight: bold;}
+        .myapp .bd .item {padding:10px 20px; border-bottom: 1px dotted #f1f1f1;}
+        .myapp .bd .url {width:300px; padding:2px;}
+        .myapp .ft {padding:10px 20px;}
+        .red {color:red;}
+    </style>
+</head>
+
+<body>
+    <textarea style="display: none" id="content"><!DOCTYPE HTML><html><head><meta charset="utf-8"/><meta name="others"id="others"content="something"/><meta http-equiv="X-UA-Compatible"content="IE=edge"/><meta name="renderer"content="webkit"><title></title></head><body><script>var Times=[],Lines=document.getElementById("others").content.split(","),timeout=5000;(function(global,factory){typeof exports==="object"&&typeof module!=="undefined"?module.exports=factory(global):typeof define==="function"&&define.amd?define(factory):factory(global)})(typeof self!=="undefined"?self:typeof window!=="undefined"?window:typeof global!=="undefined"?global:this,function(global){"use strict";global=global||{};var _Base64=global.Base64;var version="2.5.1";var buffer;if(typeof module!=="undefined"&&module.exports){try{buffer=eval("require('buffer').Buffer")}catch(err){buffer=undefined}}var b64chars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";var b64tab=function(bin){var t={};for(var i=0,l=bin.length;i<l;i++)t[bin.charAt(i)]=i;return t}(b64chars);var fromCharCode=String.fromCharCode;var cb_utob=function(c){if(c.length<2){var cc=c.charCodeAt(0);return cc<128?c:cc<2048?fromCharCode(192|cc>>>6)+fromCharCode(128|cc&63):fromCharCode(224|cc>>>12&15)+fromCharCode(128|cc>>>6&63)+fromCharCode(128|cc&63)}else{var cc=65536+(c.charCodeAt(0)-55296)*1024+(c.charCodeAt(1)-56320);return fromCharCode(240|cc>>>18&7)+fromCharCode(128|cc>>>12&63)+fromCharCode(128|cc>>>6&63)+fromCharCode(128|cc&63)}};var re_utob=/[\uD800-\uDBFF][\uDC00-\uDFFFF]|[^\x00-\x7F]/g;var utob=function(u){return u.replace(re_utob,cb_utob)};var cb_encode=function(ccc){var padlen=[0,2,1][ccc.length%3],ord=ccc.charCodeAt(0)<<16|(ccc.length>1?ccc.charCodeAt(1):0)<<8|(ccc.length>2?ccc.charCodeAt(2):0),chars=[b64chars.charAt(ord>>>18),b64chars.charAt(ord>>>12&63),padlen>=2?"=":b64chars.charAt(ord>>>6&63),padlen>=1?"=":b64chars.charAt(ord&63)];return chars.join("")};var btoa=global.btoa?function(b){return global.btoa(b)}:function(b){return b.replace(/[\s\S]{1,3}/g,cb_encode)};var _encode=buffer?buffer.from&&Uint8Array&&buffer.from!==Uint8Array.from?function(u){return(u.constructor===buffer.constructor?u:buffer.from(u)).toString("base64")}:function(u){return(u.constructor===buffer.constructor?u:new buffer(u)).toString("base64")}:function(u){return btoa(utob(u))};var encode=function(u,urisafe){return!urisafe?_encode(String(u)):_encode(String(u)).replace(/[+\/]/g,function(m0){return m0=="+"?"-":"_"}).replace(/=/g,"")};var encodeURI=function(u){return encode(u,true)};var re_btou=new RegExp(["[À-ß][-¿]","[à-ï][-¿]{2}","[ð-÷][-¿]{3}"].join("|"),"g");var cb_btou=function(cccc){switch(cccc.length){case 4:var cp=(7&cccc.charCodeAt(0))<<18|(63&cccc.charCodeAt(1))<<12|(63&cccc.charCodeAt(2))<<6|63&cccc.charCodeAt(3),offset=cp-65536;return fromCharCode((offset>>>10)+55296)+fromCharCode((offset&1023)+56320);case 3:return fromCharCode((15&cccc.charCodeAt(0))<<12|(63&cccc.charCodeAt(1))<<6|63&cccc.charCodeAt(2));default:return fromCharCode((31&cccc.charCodeAt(0))<<6|63&cccc.charCodeAt(1))}};var btou=function(b){return b.replace(re_btou,cb_btou)};var cb_decode=function(cccc){var len=cccc.length,padlen=len%4,n=(len>0?b64tab[cccc.charAt(0)]<<18:0)|(len>1?b64tab[cccc.charAt(1)]<<12:0)|(len>2?b64tab[cccc.charAt(2)]<<6:0)|(len>3?b64tab[cccc.charAt(3)]:0),chars=[fromCharCode(n>>>16),fromCharCode(n>>>8&255),fromCharCode(n&255)];chars.length-=[0,0,2,1][padlen];return chars.join("")};var _atob=global.atob?function(a){return global.atob(a)}:function(a){return a.replace(/\S{1,4}/g,cb_decode)};var atob=function(a){return _atob(String(a).replace(/[^A-Za-z0-9\+\/]/g,""))};var _decode=buffer?buffer.from&&Uint8Array&&buffer.from!==Uint8Array.from?function(a){return(a.constructor===buffer.constructor?a:buffer.from(a,"base64")).toString()}:function(a){return(a.constructor===buffer.constructor?a:new buffer(a,"base64")).toString()}:function(a){return btou(_atob(a))};var decode=function(a){return _decode(String(a).replace(/[-_]/g,function(m0){return m0=="-"?"+":"/"}).replace(/[^A-Za-z0-9\+\/]/g,""))};var noConflict=function(){var Base64=global.Base64;global.Base64=_Base64;return Base64};global.Base64={VERSION:version,atob:atob,btoa:btoa,fromBase64:decode,toBase64:encode,utob:utob,encode:encode,encodeURI:encodeURI,btou:btou,decode:decode,noConflict:noConflict,__buffer__:buffer};if(typeof Object.defineProperty==="function"){var noEnum=function(v){return{value:v,enumerable:false,writable:true,configurable:true}};global.Base64.extendString=function(){Object.defineProperty(String.prototype,"fromBase64",noEnum(function(){return decode(this)}));Object.defineProperty(String.prototype,"toBase64",noEnum(function(urisafe){return encode(this,urisafe)}));Object.defineProperty(String.prototype,"toBase64URI",noEnum(function(){return encode(this,true)}))}}if(global["Meteor"]){Base64=global.Base64}if(typeof module!=="undefined"&&module.exports){module.exports.Base64=global.Base64}else if(typeof define==="function"&&define.amd){define([],function(){return global.Base64})}return{Base64:global.Base64}});function decrypt(str){var pwd="123456789";var b=Base64;var prand="";for(var i=0;i<pwd.length;i++){prand+=pwd.charCodeAt(i).toString()}var sPos=Math.floor(prand.length/5);var mult=parseInt(prand.charAt(sPos)+prand.charAt(sPos*2)+prand.charAt(sPos*3)+prand.charAt(sPos*4)+prand.charAt(sPos*5));var incr=Math.round(pwd.length/2);var modu=Math.pow(2,31)-1;var salt=parseInt(str.substring(str.length-8,str.length),16);str=str.substring(0,str.length-8);prand+=salt;while(prand.length>10){prand=(parseInt(prand.substring(0,10))+parseInt(prand.substring(10,prand.length))).toString()}prand=(mult*prand+incr)%modu;var enc_chr="";var enc_str="";for(var i=0;i<str.length;i+=2){enc_chr=parseInt(parseInt(str.substring(i,i+2),16)^Math.floor((prand/modu)*255));enc_str+=String.fromCharCode(enc_chr);prand=(mult*prand+incr)%modu}return b.decode(enc_str)}function getScript(src,callback){var script,head=document.head||document.documentElement,timer,is_timeout=false;script=document.createElement("script");script.async=true;script.charset="utf-8";script.src=src+"?_="+(new Date).getTime();script.onload=script.onreadystatechange=function(_,isAbort){if(timer){clearTimeout(timer);timer=null}else if(is_timeout){return}if(isAbort||!script.readyState||/loaded|complete/.test(script.readyState)){script.onload=script.onreadystatechange=null;if(script.parentNode){script.parentNode.removeChild(script)}script=null;if(!isAbort){callback.apply(null,["success"])}}};head.insertBefore(script,head.firstChild);timer=setTimeout(function(){timer=null;is_timeout=true;callback.apply(null,["timeout"])},timeout)}function test(){var arr=[],i=0,len=Lines.length,ua=navigator.userAgent.toLowerCase(),is_mobile=/mobile|android|iphone|ipad|phone|micromessenger/i.test(ua),url;if(!Lines.length||!Lines[0]){go("https://www.baidu.com")}else if(Lines.length==1){go(decrypt(Lines[0]))}else{for(i=0;i<len;i++){url=decrypt(Lines[i]);url=is_mobile?url.replace(/(\/\/)(\w+)(\d+)/,function(a,b,c,d){return b+"m"+d}):url;arr.push(url)}testStart(arr)}}function testStart(arr){var i=0,len=arr.length,start=0;for(;i<len;i++){(function(index){var t1=(new Date).getTime(),delay=index>=3&&index<=7?100:0;setTimeout(function(){getScript(arr[index],function(status){go(arr[index])})},delay)})(i)}}function testEnd(){Times.sort(function(a,b){return a.time-b.time});go(Times[0].url)}function go(url){location.href=url}test()</script></body></html></textarea>
+    <script>
+        function encrypt(str){
+            var pwd = "123456789";
+            var b = Base64; //需要加载一个Base64.js文件 可以上网自行下载
+            str = b.encode(str); //Base64加密
+            var prand = "";
+            for (var i = 0; i < pwd.length; i++) {
+                prand += pwd.charCodeAt(i).toString();
+            }
+            var sPos = Math.floor(prand.length / 5);
+            var mult = parseInt(prand.charAt(sPos) + prand.charAt(sPos * 2) + prand.charAt(sPos * 3) + prand.charAt(sPos * 4) + prand.charAt(sPos * 5));
+            var incr = Math.ceil(pwd.length / 2);
+            var modu = Math.pow(2, 31) - 1;
+            if (mult < 2) {
+                alert("Please choose a more complex or longer password.");
+                return null;
+            }
+            var salt = Math.round(Math.random() * 1000000000) % 100000000;
+            prand += salt;
+            while (prand.length > 10) {
+                prand = (parseInt(prand.substring(0, 10)) + parseInt(prand.substring(10, prand.length))).toString();
+            }
+            prand = (mult * prand + incr) % modu;
+            var enc_chr = "";
+            var enc_str = "";
+            for (var i = 0; i < str.length; i++) {
+                enc_chr = parseInt(str.charCodeAt(i) ^ Math.floor((prand / modu) * 255));
+                if (enc_chr < 16) {
+                    enc_str += "0" + enc_chr.toString(16);
+                } else enc_str += enc_chr.toString(16);
+                prand = (mult * prand + incr) % modu;
+            }
+            salt = salt.toString(16);
+            while (salt.length < 8) salt = "0" + salt;
+            enc_str += salt;
+            return enc_str;
+        }
+		
+	</script>
+    <div id="app" class="myapp">
+        <form ref="form" @submit.prevent="savefile" autocomplete="off">
+            <div class="hd">
+                网址导入 <span class="red">(只需导入w1-w8即可)</span>
+            </div>
+            <div class="bd">
+                <div class="item" v-for="(item, i) in urls">
+                    {{i + 1}}. 
+                    <input type="text" :id="'url' + i" class="url" v-model="item.url" required :pattern="pattern" oninvalid="this.setCustomValidity('请输入正确的url');" oninput="setCustomValidity('')">
+                    <span v-if="i != 0">
+                        <input type="button" value="删" @click="remove(i)">
+                    </span>
+                    <span v-if="i == urls.length - 1">
+                        <input type="button" value="增加网址" @click="addUrl" />
+                    </span>
+                </div>
+            </div>
+            <div class="ft">
+                <input type="submit" id="export" value="导出网址文件" />
+                <div class="red">
+                    说明：该功能用于生成nginx反代地址跳转的文件，添加任意多个地址，且会对这些地址进行测速，选择最快的线路进行跳转<br>
+                    (请使用chrome浏览器打开此页面);
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        new Vue({
+            el: "#app",
+            data : {
+                urls : [{
+                    url : "https://"
+                }],
+                pattern: "^((http|https)?://).+"
+            },
+            methods: {
+                savefile (){
+                    var arr = this.urls.map(function(item){
+                        return encrypt(item.url);
+                    });
+                    var content = document.getElementById("content").value.replace("something", arr.join(","));
+                    var blob = new Blob([content], {type: "text/html;charset=utf-8"});
+                    saveAs(blob, "index.html");//saveAs(blob,filename)
+                },
+                addUrl (){
+                    this.urls.push({url : "https://"});
+                    this.$nextTick(()=>{
+                        document.getElementById("url" + (this.urls.length - 1)).focus();
+                    });
+                },
+                remove (index) {
+                    this.urls.splice(index, 1);  
+                }
+            },
+            mounted (){
+            	document.getElementById("url" + (this.urls.length - 1)).focus();
+            }
+        });
+
+
+    </script>
+	
+</body>
+</html>
